@@ -9,11 +9,9 @@ import {
   MenuItem,
   Toolbar,
   Typography,
-  Button
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Menu as MenuIcon,
   ArrowDropDownCircle as ArrowDropDownCircleIcon
 } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
@@ -26,7 +24,7 @@ const useStyles = makeStyles(topBarStyle);
 const TopBar = props => {
   const history = useHistory();
   const { authDispatch } = useContext(AuthContext);
-  const { user, onClickMenu = () => {}, drawerOpen } = props;
+  const { user, drawerOpen } = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 

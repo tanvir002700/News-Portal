@@ -7,7 +7,7 @@ from .services import NewApiService
 
 
 class NewApiViewSet(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.IsAuthenticated, )
 
     @action(methods=['GET'], detail=False)
     def top_news(self, request):
