@@ -2,6 +2,8 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from newsapi import NewsApiClient
+from .models import BookMarkNews
+from .serializers import BookMarkNewsSerializer
 
 
 class NewApiViewSet(viewsets.ViewSet):
@@ -19,3 +21,12 @@ class NewApiViewSet(viewsets.ViewSet):
                                                   category=category_query,
                                                   sources=source_query)
         return Response(top_headlines)
+
+
+class BookMarkNewsViewSet(viewsets.ModelViewSet):
+    serializer_class = BookMarkNewsSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get_queryset(self):
+        user = self.request.user
+        return BookMarkNews.objects.filter(user=user)
