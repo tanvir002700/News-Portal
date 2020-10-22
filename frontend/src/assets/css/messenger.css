@@ -1,0 +1,65 @@
+.rce-mbox-right {
+  background-color: #e1f3ec;
+}
+
+.rce-mbox-right-notch {
+  fill: #e1f3ec;
+}
+
+.rce-avatar-container.default {
+  border-radius: 50%;
+}
+
+.rce-input-textarea {
+  max-height: 58px;
+}
+
+.rce-smsg {
+  border-radius: 0;
+  box-shadow: unset;
+  color: grey;
+  background-color: inherit;
+}
+
+@media only screen and (max-width: 600px) {
+  .rce-citem {
+    min-width: 100%;
+  }
+
+  .rce-container-citem {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .rce-citem-body {
+    display: none;
+  }
+
+  .rce-citem-avatar {
+    padding: 0;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .rce-container-citem,
+  .rce-citem {
+    min-width: 100%;
+  }
+}
+
+.unread-thread {
+  background-color: #e1f3ec;
+}
+
+.rce-container-citem {
+  background: #ffffff;
+}
+.rce-citem {
+  background: inherit;
+}
+
+.rce-citem:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
