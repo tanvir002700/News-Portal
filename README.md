@@ -10,3 +10,9 @@
   - Then cd /frontend
   - npm install
   - Run frontend dev server with npm star
+
+
+## Project Navigation
+
+ - You can register yourself in system from /registration page
+ - After registration goto login page /login
