@@ -35,7 +35,7 @@ const LoginView = props => {
               <Typography variant="h4" gutterBottom>Login</Typography>
             </Grid>
             <Grid container alignItems="center" justify="center">
-              {errors.non_field_errors &&
+              {(errors && errors.non_field_errors) &&
               <Typography gutterBottom color="error">{errors.non_field_errors}</Typography> }
             </Grid>
           </Grid>

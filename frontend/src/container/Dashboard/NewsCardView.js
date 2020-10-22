@@ -40,12 +40,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewsCardView = ({article}) => {
+const NewsCardView = ({article, onClickBookMark}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleOnClickBookMark = article => {
+    if(onClickBookMark) onClickBookMark(article);
   };
 
   const openLinkNewTab = data => {
@@ -61,7 +65,7 @@ const NewsCardView = ({article}) => {
       />
       <CardMedia
         className={classes.media}
-        image={article.urlToImage}
+        image={article.urlToImage ? article.urlToImage : ""}
         title=""
       />
       <CardContent>
@@ -70,7 +74,7 @@ const NewsCardView = ({article}) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={() => handleOnClickBookMark(article)}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share" onClick={() => openLinkNewTab(article)}>

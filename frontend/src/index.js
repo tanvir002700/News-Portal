@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import './index.css';
+import { SnackbarProvider } from 'notistack';
 import * as serviceWorker from './serviceWorker';
 import AuthProvider from './context/auth/provider';
 import FetchProvider from './context/fetch/provider';
@@ -13,13 +14,15 @@ const App = props => {
   return (
     <React.Fragment>
       <MuiThemeProvider theme={theme}>
-        <AuthProvider>
-          <UserProvider>
-            <FetchProvider>
-              <Routes/>
-            </FetchProvider>
-          </UserProvider>
-        </AuthProvider>
+        <SnackbarProvider maxSnack={3}>
+          <AuthProvider>
+            <UserProvider>
+              <FetchProvider>
+                <Routes/>
+              </FetchProvider>
+            </UserProvider>
+          </AuthProvider>
+        </SnackbarProvider>
       </MuiThemeProvider>
     </React.Fragment>
   );
