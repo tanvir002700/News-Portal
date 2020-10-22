@@ -206,3 +206,5 @@ MEDIA_URL = '/media/'
 
 
 API_BROWSER_HEADER = env.str('API_BROWSWER_HEADER', default='test')
+
+NEWS_API_KEY = env.str('NEWS_API_KEY', default='')

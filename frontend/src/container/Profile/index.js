@@ -20,20 +20,20 @@ const Profile = props => {
 
   return (
     <React.Fragment>
-      {bookMarkedNews && bookMarkedNews.results.map(news => (
+      {(bookMarkedNews && bookMarkedNews.count) ? bookMarkedNews.results.map(news => (
         <BookMarkedNews
           key={news.id}
           news={news}
           onClickRemoveBookMark={handleRemoveBookMark}
         />
-      ))}
-      {bookMarkedNews &&
+      )) : (<h1>No Bookmark</h1>)}
+      {(bookMarkedNews && bookMarkedNews.count) ?
       <Pagination
           limit={25}
           offset={offset}
           total={bookMarkedNews.count}
           onClick={(e, offset) => setOffset(offset)}
-        />}
+      />: null}
     </React.Fragment>
   );
 };
