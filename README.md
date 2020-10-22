@@ -11,6 +11,8 @@
   - npm install
   - Run frontend dev server with npm star
   - To Run Backend test python api/manage.py test api
+  ### Python v3.6.5
+  ### node v10.22.0
 
 
 ## Project Navigation
