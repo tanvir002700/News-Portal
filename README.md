@@ -10,6 +10,7 @@
   - Then cd /frontend
   - npm install
   - Run frontend dev server with npm star
+  - To Run Backend test python api/manage.py test api
 
 
 ## Project Navigation
