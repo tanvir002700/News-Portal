@@ -18,15 +18,6 @@ const LoggedInUserTemplate = props => {
   const DrawerItems = () => (
     <React.Fragment>
         <List>
-          <ListItem
-            button
-            key="test"
-          >
-            <ListItemIcon>
-              <MenuBookIcon />
-            </ListItemIcon>
-            <ListItemText primary="test" />
-          </ListItem>
         </List>
       <Divider />
     </React.Fragment>

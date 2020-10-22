@@ -8,13 +8,15 @@ import {
   Menu,
   MenuItem,
   Toolbar,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Menu as MenuIcon,
   ArrowDropDownCircle as ArrowDropDownCircleIcon
 } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 import defaultAvatar from '../../assets/images/avatar.png';
 import { topBarStyle } from './styles';
 import { AuthContext } from '../../context/auth/context';
@@ -22,6 +24,7 @@ import { AuthContext } from '../../context/auth/context';
 const useStyles = makeStyles(topBarStyle);
 
 const TopBar = props => {
+  const history = useHistory();
   const { authDispatch } = useContext(AuthContext);
   const { user, onClickMenu = () => {}, drawerOpen } = props;
   const classes = useStyles();
@@ -41,6 +44,16 @@ const TopBar = props => {
     authDispatch({type: 'SIGN_OUT'});
   };
 
+  const onClickDashboard = () => {
+    history.push('/');
+    setAnchorEl(null);
+  };
+
+  const onClickProfile = () => {
+    history.push('/profile');
+    setAnchorEl(null);
+  };
+
   const menuId = 'primary-account-settings';
   const renderMenu = (
     <Menu
@@ -53,6 +66,8 @@ const TopBar = props => {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       transformOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
+      <MenuItem onClick={onClickProfile}>Profile</MenuItem>
+      <MenuItem onClick={onClickDashboard}>Dashboard</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
@@ -64,18 +79,8 @@ const TopBar = props => {
         className={clsx(classes.appBar, { [classes.appBarShift]: drawerOpen })}
       >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={onClickMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-
           <Typography className={classes.title} variant="h6" noWrap>
-            Demo Project
+            News Portal
           </Typography>
           <div className={classes.grow} />
 
