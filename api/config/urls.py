@@ -27,8 +27,8 @@ doc_urls = include_docs_urls(title=settings.API_BROWSER_HEADER)
 drf_urls = include('rest_framework.urls')
 
 auths_urls = include(('auths.urls', 'auths'))
-
 user_urls = include(('users.urls', 'users'))
+news_urls = include(('news.urls', 'news'))
 
 
 urlpatterns = [
@@ -37,7 +37,8 @@ urlpatterns = [
     path('api/drf/', drf_urls),
     path('api/admin/', admin.site.urls),
     path('api/auth/', auths_urls),
-    path('api/', user_urls)
+    path('api/', user_urls),
+    path('api/', news_urls)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
