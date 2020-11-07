@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
+import NoImage from '../../assets/images/no-image.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,7 +64,7 @@ const NewsCardView = ({article, onClickBookMark}) => {
       />
       <CardMedia
         className={classes.media}
-        image={article.urlToImage ? article.urlToImage : ""}
+        image={article.urlToImage ? article.urlToImage : NoImage}
         title=""
       />
       <CardContent>
