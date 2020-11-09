@@ -3,9 +3,12 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom'
 import AuthProvider from '../../context/auth/provider';
 import LoginView from './LoginView';
-import useFetch from 'use-http';
+
 
 const mockHistoryPush = jest.fn();
+const mockPostRequest = jest.fn();
+const mockRequestOk = jest.fn(() => false);
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory: () => ({
@@ -13,10 +16,16 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-jest.mock('use-http');
+jest.mock('use-http', () => ({
+  ...jest.requireActual('use-http'),
+  useFetch: () => ([{
+    post: mockPostRequest
+  }, {
+    ok: mockRequestOk()
+  }])
+}));
 
 test('render login form properly', () => {
-  useFetch.mockReturnValue([]);
   const { queryByTestId, getByText } = render(
     <BrowserRouter>
       <LoginView/>
@@ -28,30 +37,48 @@ test('render login form properly', () => {
   expect(getByText(/Registration/i)).toBeTruthy();
 });
 
-test('login', async () => {
-  useFetch.mockReturnValue([
-    {
-      post: jest.fn().mockResolvedValueOnce({
-        auth_token: 'xyz'
-      })
-    },
-    {
-      ok: true
-    }
-  ]);
-  const { queryByTestId, getByText, getByLabelText } = render(
-    <BrowserRouter>
-      <AuthProvider>
-        <LoginView/>
-      </AuthProvider>
-    </BrowserRouter>
-  );
-  const emailInput = queryByTestId('email-field').querySelector('input');
-  const passwordInput = queryByTestId('password-field').querySelector('input');
-  const submitButton = queryByTestId('submit');
-  fireEvent.change(emailInput, {target: {value: 'test@email.com'}});
-  fireEvent.click(submitButton);
-  await waitFor(() => {
-    expect(mockHistoryPush).toHaveBeenCalledWith('/');
+describe('login', () => {
+  test('success', async () => {
+    mockPostRequest.mockResolvedValueOnce({
+      auth_token: 'xyz'
+    })
+    mockRequestOk.mockReturnValue(true);
+    const { queryByTestId, getByText, getByLabelText } = render(
+      <BrowserRouter>
+        <AuthProvider>
+          <LoginView/>
+        </AuthProvider>
+      </BrowserRouter>
+    );
+    const emailInput = queryByTestId('email-field').querySelector('input');
+    const passwordInput = queryByTestId('password-field').querySelector('input');
+    const submitButton = queryByTestId('submit');
+    fireEvent.change(emailInput, {target: {value: 'test@email.com'}});
+    fireEvent.click(submitButton);
+    await waitFor(() => {
+      expect(mockHistoryPush).toHaveBeenCalledWith('/');
+    });
+  });
+
+  test('failed', async () => {
+    mockPostRequest.mockResolvedValueOnce({
+      auth_token: 'xyz'
+    })
+    mockRequestOk.mockReturnValue(true);
+    const { queryByTestId, getByText, getByLabelText } = render(
+      <BrowserRouter>
+        <AuthProvider>
+          <LoginView/>
+        </AuthProvider>
+      </BrowserRouter>
+    );
+    const emailInput = queryByTestId('email-field').querySelector('input');
+    const passwordInput = queryByTestId('password-field').querySelector('input');
+    const submitButton = queryByTestId('submit');
+    fireEvent.change(emailInput, {target: {value: 'test@email.com'}});
+    fireEvent.click(submitButton);
+    await waitFor(() => {
+      expect(mockHistoryPush).not.toHaveBeenCalledWith('/');
+    });
   });
 });
