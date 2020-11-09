@@ -14,5 +14,5 @@ test('render registration form properly', () => {
   expect(queryByTestId('password-field')).toBeTruthy();
   expect(queryByTestId('re-password-field')).toBeTruthy();
   expect(queryByTestId('submit')).toBeTruthy();
-  expect(getByText(/Login to site/i)).toBeInTheDocument();
+  expect(getByText(/Login to site/i)).toBeTruthy();
 });
