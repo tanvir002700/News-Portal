@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom'
-import AuthProvider from '../../context/auth/provider';
+import { render, fireEvent, waitFor } from 'test-utils';
 import LoginView from './LoginView';
 
 
@@ -26,11 +24,7 @@ jest.mock('use-http', () => ({
 }));
 
 test('render login form properly', () => {
-  const { queryByTestId, getByText } = render(
-    <BrowserRouter>
-      <LoginView/>
-    </BrowserRouter>
-  );
+  const { queryByTestId, getByText } = render(<LoginView/>);
   expect(queryByTestId('email-field')).toBeTruthy();
   expect(queryByTestId('password-field')).toBeTruthy();
   expect(queryByTestId('submit')).toBeTruthy();
@@ -43,13 +37,7 @@ describe('login', () => {
       auth_token: 'xyz'
     })
     mockRequestOk.mockReturnValue(true);
-    const { queryByTestId, getByText, getByLabelText } = render(
-      <BrowserRouter>
-        <AuthProvider>
-          <LoginView/>
-        </AuthProvider>
-      </BrowserRouter>
-    );
+    const { queryByTestId, getByText, getByLabelText } = render(<LoginView/>);
     const emailInput = queryByTestId('email-field').querySelector('input');
     const passwordInput = queryByTestId('password-field').querySelector('input');
     const submitButton = queryByTestId('submit');
@@ -65,13 +53,7 @@ describe('login', () => {
       auth_token: 'xyz'
     })
     mockRequestOk.mockReturnValue(true);
-    const { queryByTestId, getByText, getByLabelText } = render(
-      <BrowserRouter>
-        <AuthProvider>
-          <LoginView/>
-        </AuthProvider>
-      </BrowserRouter>
-    );
+    const { queryByTestId, getByText, getByLabelText } = render(<LoginView/>);
     const emailInput = queryByTestId('email-field').querySelector('input');
     const passwordInput = queryByTestId('password-field').querySelector('input');
     const submitButton = queryByTestId('submit');
