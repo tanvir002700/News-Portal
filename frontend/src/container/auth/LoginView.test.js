@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from 'test-utils';
+import { render, fireEvent, waitFor } from 'utils/test-utils';
 import LoginView from './LoginView';
 
 
