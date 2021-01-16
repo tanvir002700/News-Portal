@@ -1,5 +1,6 @@
 import React from 'react';
 import { cleanup, render, fireEvent, waitFor, screen } from 'utils/test-utils';
+import userEvent from '@testing-library/user-event';
 import LoginView from './LoginView';
 
 
@@ -34,6 +35,70 @@ test('render login form properly', () => {
   expect(screen.queryByTestId('password-field')).toBeTruthy();
   expect(screen.queryByTestId('submit')).toBeTruthy();
   expect(screen.getByText(/Registration/i)).toBeTruthy();
+});
+
+describe("form validation", () => {
+  test("should call backend api with proper input", async () => {
+    render(<LoginView/>);
+
+    const emailInput = screen.queryByTestId('email-field').querySelector('input');
+    const passwordInput = screen.queryByTestId('password-field').querySelector('input');
+    const submitButton = screen.queryByTestId('submit');
+
+    userEvent.type(emailInput, 'test@email.com');
+    userEvent.type(passwordInput, 'test');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockPostRequest).toHaveBeenCalled();
+    });
+  });
+
+  test("should not call backend api with blank email field", async () => {
+    render(<LoginView/>);
+
+    const emailInput = screen.queryByTestId('email-field').querySelector('input');
+    const passwordInput = screen.queryByTestId('password-field').querySelector('input');
+    const submitButton = screen.queryByTestId('submit');
+
+    userEvent.type(passwordInput, 'test');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockPostRequest).not.toHaveBeenCalled();
+    });
+  });
+
+  test("should not call backend api with invalid email", async () => {
+    render(<LoginView/>);
+
+    const emailInput = screen.queryByTestId('email-field').querySelector('input');
+    const passwordInput = screen.queryByTestId('password-field').querySelector('input');
+    const submitButton = screen.queryByTestId('submit');
+
+    userEvent.type(emailInput, 'testemail.com');
+    userEvent.type(passwordInput, 'test');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockPostRequest).not.toHaveBeenCalled();
+    });
+  });
+
+  test("should not call backend api with blank password", async () => {
+    render(<LoginView/>);
+
+    const emailInput = screen.queryByTestId('email-field').querySelector('input');
+    const passwordInput = screen.queryByTestId('password-field').querySelector('input');
+    const submitButton = screen.queryByTestId('submit');
+
+    userEvent.type(emailInput, 'test@email.com');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockPostRequest).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe('login', () => {
