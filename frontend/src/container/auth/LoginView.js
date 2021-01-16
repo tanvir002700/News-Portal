@@ -14,6 +14,11 @@ const LoginView = props => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    if(!e.target.checkValidity()) {
+      e.target.reportValidity();
+      return;
+    }
+
     const { email, password } = e.target.elements;
     const data = {email: email.value, password: password.value};
     const res = await loginRequest.post('/', data);
