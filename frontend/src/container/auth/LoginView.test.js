@@ -127,7 +127,7 @@ describe('login', () => {
 
   test('failed', async () => {
     mockPostRequest.mockResolvedValueOnce({
-      auth_token: 'xyz'
+      non_field_errors: ["Unable to log in with provided credentials."]
     })
     mockRequestOk.mockReturnValue(false);
 
@@ -145,6 +145,7 @@ describe('login', () => {
     await waitFor(() => {
       expect(mockPostRequest).toHaveBeenCalledWith('/', data);
     });
+    expect(screen.getByText("Unable to log in with provided credentials.")).toBeTruthy();
     expect(mockHistoryPush).not.toHaveBeenCalledWith('/');
   });
 });
