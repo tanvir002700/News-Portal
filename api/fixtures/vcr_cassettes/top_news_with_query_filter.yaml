@@ -1,0 +1,83 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - Application/JSON
+      User-Agent:
+      - python-requests/2.24.0
+    method: GET
+    uri: https://newsapi.org/v2/top-headlines?q=football&language=en
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 61d581b0ddf5f44c-DAC
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 06 Feb 2021 14:19:32 GMT
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Expires:
+      - '-1'
+      NEL:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      Pragma:
+      - no-cache
+      Report-To:
+      - '{"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=fewqiPeqqjNQEdzOcER2Q1eyp2hZ0BTrZDgV2Q6%2BjAW24uXLaBLwKteBimqpclixrN9P%2FP7ALVX80kZw2PmqUSbf%2Fjfu%2FZzDLiBgpA%3D%3D"}],"max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cfduid=d629b156cdeb7dabfb3acd1a4864b59051612621171; expires=Mon, 08-Mar-21
+        14:19:31 GMT; path=/; domain=.newsapi.org; HttpOnly; SameSite=Lax
+      Transfer-Encoding:
+      - chunked
+      X-Cached-Result:
+      - 'false'
+      cf-request-id:
+      - 08194f62850000f44cdd262000000001
+    status:
+      code: 200
+      message: OK
+version: 1

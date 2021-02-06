@@ -36,7 +36,27 @@ class TestNewsViewSetTopNews(APITestCase):
             'urlToImage': 'https://i2-prod.irishmirror.ie/incoming/article11626449.ece/ALTERNATES/s1200/1_irish-breaking-news-logo-stock-generic-irish-mirror.png',
             'publishedAt': '2021-02-06T08:28:00Z',
             'content': 'Met Eireann have issued an urgent snow alert as a big freeze is set to hit Ireland with temperatures plummeting as low as -4C.\r\nThe Weather Advisory is in place from 6am on Sunday until 6pm on Wednes… [+4362 chars]'
-        } , response.data['articles'][0])
+        }, response.data['articles'][0])
+
+    @test_vcr.use_cassette('api/fixtures/vcr_cassettes/top_news_with_query_filter.yaml')
+    def test_top_new_with_query_filter(self):
+        url = "%s?q=%s" % (self.top_news_url, 'football')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertDictContainsSubset({'status': 'ok', 'totalResults': 3}, response.data)
+        self.assertDictContainsSubset({
+            'source': {
+                'id': None,
+                'name': 'Football.London'
+            },
+            'author': 'Robert Warlow',
+            'title': 'Jermaine Jenas makes Jose Mourinho sack claim amid increasing pressure after Tottenham form - Football.London',
+            'description': 'Jose Mourinho and his Tottenham side have faced fresh criticism after recent results, with Spurs slipping to eighth in the Premier League after three straight defeats',
+            'url': 'https://www.football.london/tottenham-hotspur-fc/news/jermaine-jenas-jose-mourinho-claim-19783620',
+            'urlToImage': 'https://i2-prod.football.london/incoming/article19552689.ece/ALTERNATES/s1200/1_GettyImages-1230389926.jpg',
+            'publishedAt': '2021-02-06T06:30:00Z',
+            'content': "Former Tottenham Hotspur midfielder Jermaine Jenas has said he cannot see Jose Mourinho being sacked by Spurs, despite the club's poor recent form.\r\nSpurs have lost their last three Premier League ga… [+3548 chars]"
+        }, response.data['articles'][0])
 
 
 class TestBookMarkNewsCreateEndpint(APITestCase):
