@@ -58,6 +58,13 @@ class TestNewsViewSetTopNews(APITestCase):
             'content': "Former Tottenham Hotspur midfielder Jermaine Jenas has said he cannot see Jose Mourinho being sacked by Spurs, despite the club's poor recent form.\r\nSpurs have lost their last three Premier League ga… [+3548 chars]"
         }, response.data['articles'][0])
 
+    @test_vcr.use_cassette('api/fixtures/vcr_cassettes/top_news_with_country_filter.yaml')
+    def test_top_new_with_country_filter(self):
+        url = "%s?country=%s" % (self.top_news_url, 'us')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertDictContainsSubset({'status': 'ok', 'totalResults': 35}, response.data)
+
 
 class TestBookMarkNewsCreateEndpint(APITestCase):
     create_book_mark_url = reverse('news:book-mark-news-list')
