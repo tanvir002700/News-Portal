@@ -79,6 +79,12 @@ class TestNewsViewSetTopNews(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertDictContainsSubset({'status': 'ok', 'totalResults': 10}, response.data)
 
+    def test_top_new_with_mix_filter(self):
+        url = "%s?category=%s&source=%s" % (self.top_news_url, 'business', 'Wired')
+        response = self.client.get(url)
+        print(response.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
 
 class TestBookMarkNewsCreateEndpint(APITestCase):
     create_book_mark_url = reverse('news:book-mark-news-list')
