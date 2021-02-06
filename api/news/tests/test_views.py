@@ -65,6 +65,13 @@ class TestNewsViewSetTopNews(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertDictContainsSubset({'status': 'ok', 'totalResults': 35}, response.data)
 
+    @test_vcr.use_cassette('api/fixtures/vcr_cassettes/top_news_with_category_filter.yaml')
+    def test_top_new_with_category_filter(self):
+        url = "%s?category=%s" % (self.top_news_url, 'business')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertDictContainsSubset({'status': 'ok', 'totalResults': 602}, response.data)
+
 
 class TestBookMarkNewsCreateEndpint(APITestCase):
     create_book_mark_url = reverse('news:book-mark-news-list')
