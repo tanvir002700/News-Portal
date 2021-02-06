@@ -1,0 +1,120 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - Application/JSON
+      User-Agent:
+      - python-requests/2.24.0
+    method: GET
+    uri: https://newsapi.org/v2/top-headlines?sources=Wired&language=en
+  response:
+    body:
+      string: !!binary |
+        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
+        5QPIKv0cAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 61d5acdb1fcaf454-DAC
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 06 Feb 2021 14:48:59 GMT
+      Expect-CT:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Expires:
+      - '-1'
+      NEL:
+      - '{"report_to":"cf-nel","max_age":604800}'
+      Pragma:
+      - no-cache
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=FBOlN9%2BZt%2Fcz8ww8GVPndDhYtmH5AmKOLDTrbjHV7OyzLyO4HnBwCW%2BEbPvlTCSa6A9JCEL2Y%2BPXjhTPAAuTxYpiuUni9KBP98abAg%3D%3D"}]}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cfduid=db44de4a2e015a28a1c6c041ac235cfc91612622939; expires=Mon, 08-Mar-21
+        14:48:59 GMT; path=/; domain=.newsapi.org; HttpOnly; SameSite=Lax
+      Transfer-Encoding:
+      - chunked
+      X-Cache-Expires:
+      - Sat, 06 Feb 2021 14:52:19 GMT
+      X-Cache-Remaining:
+      - '99'
+      X-Cached-Result:
+      - 'true'
+      cf-request-id:
+      - 08196a5cee0000f454ce343000000001
+    status:
+      code: 200
+      message: OK
+version: 1
