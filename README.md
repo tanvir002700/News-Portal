@@ -1,5 +1,8 @@
 # News Portal
 
+![Django CI](https://github.com/tanvir002700/News-Portal/actions/workflows/django.yml/badge.svg)
+
+
 ## Project Setup & Run
   - First copy env.example to .env in project root
   - Create database and set database configuration to .env
