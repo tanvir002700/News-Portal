@@ -48,3 +48,4 @@ jobs:
       env:
         DJANGO_SECRET_KEY: sdfjkdfadfad
         DATABASE_URL: postgres://postgres:postgres@localhost:/github_actions
+        DJANGO_LOG_LEVEL: ERROR
