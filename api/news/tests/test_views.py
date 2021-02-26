@@ -27,7 +27,7 @@ class TestNewsViewSetTopNews(APITestCase):
         self.assertDictContainsSubset({
             'source': {
                 'id': None,
-                'name': 'Irish Mirror'
+                'name': 'Irish Mirror22'
             },
             'author': 'Sam Roberts',
             'title': "Ireland weather: Met Eireann forecast urgent snow alert as 'dangerous' -4C big freeze to hit - Irish Mirror",
