@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+data:
+  DJANGO_ALLOWED_HOSTS: "*"
+  STATIC_ENDPOINT_URL: "https://your_space_name.space_region.digitaloceanspaces.com"
+  STATIC_BUCKET_NAME: "your_space_name"
+  DJANGO_LOGLEVEL: "info"
+  DEBUG: "True"
+  DATABASE_ENGINE: "postgresql_psycopg2"

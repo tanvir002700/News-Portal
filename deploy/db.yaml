@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newsportal-app-db
+  labels:
+    type: db
+    service: newsportal-db
+    vendor: postgres
+spec:
+  selector:
+    matchLabels:
+      type: db
+      service: newsportal-db
+      vendor: postgres
+  template:
+    metadata:
+      labels:
+        type: db
+        service: newsportal-db
+        vendor: postgres
+    spec:
+      containers:
+      - name: db
+        image: postgres
+        env:
+          - name: POSTGRES_PASSWORD
+            value: password
+          - name: POSTGRES_USER
+            value: dev
+          - name: POSTGRES_DB
+            value: drf_react
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: newsportal-app-db
+spec:
+  ports:
+  - port: 5432
+  selector:
+    type: db
+    service: newsportal-db
+    vendor: postgres
+
+  #  containers:
+  #  - name: db
+  #    image: postgres
+  #    env:
+  #      - name: POSTGRES_PASSWORD
+  #        value: password
+  #      - name: POSTGRES_USER
+  #        value: dev
+  #      - name: POSTGRES_DB
+  #        value: drf_react
+  #  - name: api
+  #    image: tanvir/newsportal
+  #    imagePullPolicy: Never
+  #    ports:
+  #      - containerPort: 8000
+  #    env:
+  #      - name: DATABASE_URL
+  #        value: postgres://dev:password@localhost:/drf_react
