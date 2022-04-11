@@ -60,22 +60,3 @@ spec:
     type: api
     service: newsportal-api
     language: python
-
-
-#---
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  name: newsportal-api
-#  labels:
-#    type: api
-#spec:
-#  containers:
-#  - name: api
-#    image: tanvir/newsportal
-#    imagePullPolicy: Never
-#    ports:
-#      - containerPort: 8000
-#    env:
-#      - name: DATABASE_URL
-#        value: postgres://dev:password@newsportal-app-db:/drf_react

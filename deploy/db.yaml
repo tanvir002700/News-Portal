@@ -29,6 +29,13 @@ spec:
             value: dev
           - name: POSTGRES_DB
             value: drf_react
+        volumeMounts:
+        - name: postgres-db
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-db
+        persistentVolumeClaim:
+          claimName: postgres-pvc
 
 ---
 
@@ -43,22 +50,3 @@ spec:
     type: db
     service: newsportal-db
     vendor: postgres
-
-  #  containers:
-  #  - name: db
-  #    image: postgres
-  #    env:
-  #      - name: POSTGRES_PASSWORD
-  #        value: password
-  #      - name: POSTGRES_USER
-  #        value: dev
-  #      - name: POSTGRES_DB
-  #        value: drf_react
-  #  - name: api
-  #    image: tanvir/newsportal
-  #    imagePullPolicy: Never
-  #    ports:
-  #      - containerPort: 8000
-  #    env:
-  #      - name: DATABASE_URL
-  #        value: postgres://dev:password@localhost:/drf_react
