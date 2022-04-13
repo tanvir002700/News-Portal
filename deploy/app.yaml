@@ -36,6 +36,8 @@ spec:
         envFrom:
         - configMapRef:
             name: newsportal-config
+        - secretRef:
+            name: app-secret
         readinessProbe:
           httpGet:
             path: /api

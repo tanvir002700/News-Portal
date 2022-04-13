@@ -7,7 +7,7 @@ data:
   API_BROWSER_HEADER: 'News Portal'
   DJANGO_DEFAULT_PAGE_SIZE: '25'
   DJANGO_MAX_PAGE_SIZE: '100'
-  DJANGO_ENV: 'development'
+  DJANGO_ENV: 'production'
   DJANGO_ALLOWED_HOSTS: '*'
   DJANGO_DEFAULT_THROTTLE_RATE_ANON: '60/minute'
   DJANGO_DEFAULT_THROTTLE_RATE_USER: '120/minute'
@@ -18,4 +18,3 @@ data:
 
   DEFAULT_TIME_ZONE: 'UTC'
   USER_DEFAULT_TIMEZONE: 'Asia/Dhaka'
-  DATABASE_URL: 'postgres://dev:password@newsportal-app-db:/drf_react'
