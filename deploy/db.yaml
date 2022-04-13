@@ -22,13 +22,9 @@ spec:
       containers:
       - name: db
         image: postgres
-        env:
-          - name: POSTGRES_PASSWORD
-            value: password
-          - name: POSTGRES_USER
-            value: dev
-          - name: POSTGRES_DB
-            value: drf_react
+        envFrom:
+        - secretRef:
+            name: db-secret
         volumeMounts:
         - name: postgres-db
           mountPath: /var/lib/postgresql/data

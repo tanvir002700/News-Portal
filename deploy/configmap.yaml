@@ -1,11 +1,21 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: test-config
+  name: newsportal-config
 data:
-  DJANGO_ALLOWED_HOSTS: "*"
-  STATIC_ENDPOINT_URL: "https://your_space_name.space_region.digitaloceanspaces.com"
-  STATIC_BUCKET_NAME: "your_space_name"
-  DJANGO_LOGLEVEL: "info"
-  DEBUG: "True"
-  DATABASE_ENGINE: "postgresql_psycopg2"
+  DOMAIN: 'localhost:3000'
+  API_BROWSER_HEADER: 'News Portal'
+  DJANGO_DEFAULT_PAGE_SIZE: '25'
+  DJANGO_MAX_PAGE_SIZE: '100'
+  DJANGO_ENV: 'development'
+  DJANGO_ALLOWED_HOSTS: '*'
+  DJANGO_DEFAULT_THROTTLE_RATE_ANON: '60/minute'
+  DJANGO_DEFAULT_THROTTLE_RATE_USER: '120/minute'
+  DJANGO_USE_X_FORWARDED_HOST: 'True'
+
+  DATABASE_CONN_MAX_AGE: '60'
+  REDIS_URL: 'redis://127.0.0.1:6379'
+
+  DEFAULT_TIME_ZONE: 'UTC'
+  USER_DEFAULT_TIMEZONE: 'Asia/Dhaka'
+  DATABASE_URL: 'postgres://dev:password@newsportal-app-db:/drf_react'
