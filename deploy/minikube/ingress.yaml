@@ -17,3 +17,10 @@ spec:
             name: newsportal-api
             port:
               number: 8000
+      - path: /static
+        pathType: Prefix
+        backend:
+          service:
+            name: newsportal-api-static
+            port:
+              number: 80
