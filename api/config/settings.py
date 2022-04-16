@@ -16,8 +16,9 @@ import os
 
 # Project Base Paths
 # project_root/api/config/settings.py - 3 = project_root/
-ROOT_DIR = environ.Path(__file__) - 3
-API_DIR = ROOT_DIR.path('api')
+# project_root/api/config/settings.py - 2 = project_root/
+ROOT_DIR = environ.Path(__file__) - 2
+API_DIR = ROOT_DIR
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env = environ.Env()

@@ -1,0 +1,30 @@
+FROM python:3.8 as build
+
+MAINTAINER tanvir002700@gmail.com
+
+RUN apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
+     build-essential \
+     python3-dev \
+     libevent-dev \
+     python-dev \
+     libffi-dev \
+     binutils \
+     libproj-dev \
+     gdal-bin
+
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
+RUN pip install -r requirements.txt
+
+ENV SECRET_KEY=static
+ENV ALLOWED_HOSTS=static
+ENV DATABASE_URL=static
+ENV CORS_ORIGIN_WHITELIST=static
+
+RUN touch .env
+RUN python manage.py collectstatic --noinput
+
+FROM nginx:1.21-alpine
+COPY --from=build /app/static /usr/share/nginx/html/static
