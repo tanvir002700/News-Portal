@@ -6,7 +6,7 @@ import { TextField, Button, Grid, Typography } from '@material-ui/core';
 
 const RegistrationView = props => {
   const [errors, setErrors] = useState({});
-  const [registerRequest, registerResponse] = useFetch('/api/users/');
+  const [registerRequest, registerResponse] = useFetch('/api/users');
   const history = useHistory();
 
   const onSubmit = async e => {
