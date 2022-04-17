@@ -10,17 +10,24 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: ImplementationSpecific
+      - path: /api/static/
+        pathType: Prefix
+        backend:
+          service:
+            name: newsportal-api-static
+            port:
+              number: 80
+      - path: /api
+        pathType: Prefix
         backend:
           service:
             name: newsportal-api
             port:
               number: 8000
-      - path: /static
-        pathType: Prefix
+      - path: /
+        pathType: ImplementationSpecific
         backend:
           service:
-            name: newsportal-api-static
+            name: newsportal-app
             port:
               number: 80
